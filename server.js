@@ -9,7 +9,7 @@ dotenv.config({ path: './config.env' });
 //   process.env.DATABASE_PASSWORD
 // );
 
-const DB = process.env.DATABASE_LOCAL
+const DB = process.env.DATABASE_LOCAL;
 
 mongoose
   .connect(DB, {
@@ -18,7 +18,7 @@ mongoose
     useFindAndModify: false,
     useUnifiedTopology: true
   })
-  .then((con = console.log('Database connection successfull')));
+  .then(() => console.log('Database connection successfull'));
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
