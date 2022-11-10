@@ -2,6 +2,9 @@ const express = require('express');
 const tourController = require('./../controllers/tourController');
 
 const router = express.Router();
+
+router.route('/tour-stats').get(tourController.getTourStas)
+
 router
   .route('/top-five-cheap')
   .get(tourController.aliasTopTours, tourController.getAllTours);
