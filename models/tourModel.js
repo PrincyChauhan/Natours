@@ -47,7 +47,7 @@ const tourSchema = mongoose.Schema(
     priceDiscount: {
       type: Number,
       validate: {
-        validatore: function(val) {
+        validator: function(val) {
           // this only points to current doc on New document creation
           return val < this.price;
         },
@@ -106,13 +106,13 @@ tourSchema.pre('save', function(next) {
 
 // Query Middleware
 
-tourSchema.pre('/^find/', function(next) {
+tourSchema.pre(/^find/, function(next) {
   this.find({ secretTour: { $ne: true } });
   this.start = Date.now();
   next();
 });
 
-tourSchema.post('/^find/', function(docs, next) {
+tourSchema.post(/^find/, function(docs, next) {
   console.log(`query took ${Date.now() - this.start} miliseconds`);
   console.log(docs);
   next();
